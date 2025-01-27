@@ -2,13 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+         stage('git clone') {
             steps {
-              script {
-                  sh git branch: 'main', credentialsId: 'jenkins-ssh', url: 'git@github.com:vbilahaniya/java_web_app.git'
-                }
-                
-                
+             git credentialsId: 'jenkins-ssh', url: 'git@github.com:vbilahaniya/java_web_app.git'
             }
         }
         
