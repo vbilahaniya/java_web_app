@@ -1,10 +1,20 @@
 pipeline {
     agent any
+     tools {
+        maven 'Maven-3.9.9' 
+    }
+
 
     stages {
          stage('git clone') {
             steps {
               git branch: 'main', credentialsId: 'jenkins-ssh', url: 'git@github.com:vbilahaniya/java_web_app.git'
+            }
+        }
+
+         stage('build') {
+            steps {
+              sh 'mvn clean package'
             }
         }
         
