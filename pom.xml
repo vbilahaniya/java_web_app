@@ -27,6 +27,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -35,6 +36,21 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+            <!-- SonarQube Maven Plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version>
+            </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <!-- SonarQube Authentication Token (optional, replace with your token) -->
+        <sonar.login>sqa_ed77de3419d271f9b7085f204a363940a2603742</sonar.login>
+
+        <!-- SonarQube Server URL -->
+        <sonar.host.url>http://13.234.232.42:9000/</sonar.host.url>
+    </properties>
 </project>
