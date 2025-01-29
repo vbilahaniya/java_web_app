@@ -48,7 +48,7 @@
 
     <properties>
         <!-- SonarQube Authentication Token (optional, replace with your token) -->
-        <sonar.login>sqa_ed77de3419d271f9b7085f204a363940a2603742</sonar.login>
+        <sonar.login>squ_4a60a771bcfacb2153995f03b1714ef27625aa1e</sonar.login>
 
         <!-- SonarQube Server URL -->
         <sonar.host.url>http://13.234.232.42:9000/</sonar.host.url>
