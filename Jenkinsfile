@@ -24,5 +24,13 @@ pipeline {
                }
             }      
         }
+        stage('upload artifactory') {
+            steps {
+              nexusArtifactUploader artifacts: [[artifactId: 'my-web-app', classifier: '', file: 'target/my-web-app.war', type: 'war']], credentialsId: 'jenkins-nexus', groupId: 'com.example', nexusUrl: '3.111.39.30:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_web_app_repo', version: '1.0-SNAPSHOT'
+              
+
+
+            }
+
     }
 }
