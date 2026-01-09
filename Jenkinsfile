@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        pollSCM('* * * * *')  // This checks for changes every minute. Modify as needed.
+    }
     tools {
         maven 'Maven-3.9.12'
     }
