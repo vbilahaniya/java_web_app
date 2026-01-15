@@ -36,7 +36,20 @@ pipeline {
                sshagent(['dev-jenkins']) {
                    sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ec2-user@13.201.121.197:/opt/tomcat/apache-tomcat-9.0.113/webapps'
                 }
+
+				
             }
+			
+        }
+		stage('deploy on QA') {
+            steps {
+               sshagent(['QA_Jenkins']) {
+                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@43.204.220.107:/opt/tomcat/apache-tomcat-9.0.113/webapps' 
+                }
+
+				
+            }
+			
         }
     }
 }
