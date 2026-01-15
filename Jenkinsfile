@@ -44,7 +44,7 @@ pipeline {
 		stage('deploy on QA') {
             steps {
                sshagent(['QA_Jenkins']) {
-                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@43.204.220.107:/opt/tomcat/apache-tomcat-9.0.113/webapps' 
+                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@15.207.14.95:/opt/tomcat/webapps' 
                 }
 
 				
