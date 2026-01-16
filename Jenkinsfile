@@ -28,13 +28,13 @@ pipeline {
         }
 		stage('artifact uploader') {
             steps {
-               nexusArtifactUploader artifacts: [[artifactId: 'my-web-app', classifier: '', file: 'target/my-web-app-1.0-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus-jenkins', groupId: 'com.example', nexusUrl: '13.127.245.252:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_web_app', version: '1.0-SNAPSHOT'
+               nexusArtifactUploader artifacts: [[artifactId: 'my-web-app', classifier: '', file: 'target/my-web-app-1.0-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus-jenkins', groupId: 'com.example', nexusUrl: '13.235.241.47:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_web_app', version: '1.0-SNAPSHOT'
             }
         }
 		stage('deploy on dev') {
             steps {
                sshagent(['dev-jenkins']) {
-                   sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ec2-user@13.201.121.197:/opt/tomcat/apache-tomcat-9.0.113/webapps'
+                   sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ec2-user@13.234.232.145:/opt/tomcat/apache-tomcat-9.0.113/webapps'
                 }
 
 				
@@ -44,7 +44,17 @@ pipeline {
 		stage('deploy on QA') {
             steps {
                sshagent(['QA_Jenkins']) {
-                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@15.207.14.95:/opt/tomcat/webapps' 
+                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@3.110.40.150:/opt/tomcat/webapps' 
+                }
+
+				
+            }
+			
+        }
+		stage('deploy on prod') {
+            steps {
+               sshagent(['prod-jenkins']) {
+                  sh 'scp -o StrictHostKeyChecking=no target/my-web-app-1.0-SNAPSHOT.war ubuntu@3.110.176.22:/opt/tomcat/webapps' 
                 }
 
 				
